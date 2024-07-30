@@ -1,0 +1,481 @@
+<html>
+  <head>
+  <title>Mush Room - Explore the Fungal Frontier</title>
+  <style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background: #1a0d2c;
+    color: #f0e6ff;
+    overflow-x: hidden;
+  }
+  
+  .mushroom-cap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, #ff6b6b, #6b5b95);
+    clip-path: ellipse(75% 60% at 50% 40%);
+    z-index: -1;
+    animation: pulse 10s infinite alternate;
+  }
+  @keyframes psychedelicText {
+  0% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff; }
+  25% { text-shadow: 0 0 10px #00ffff, 0 0 20px #00ffff, 0 0 30px #00ffff; }
+  50% { text-shadow: 0 0 10px #ffff00, 0 0 20px #ffff00, 0 0 30px #ffff00; }
+  75% { text-shadow: 0 0 10px #ff8800, 0 0 20px #ff8800, 0 0 30px #ff8800; }
+  100% { text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff; }
+}
+
+h1, h2 {
+  animation: psychedelicText 10s infinite;
+}
+@keyframes morphBackground {
+  0% { filter: hue-rotate(0deg) saturate(100%); }
+  50% { filter: hue-rotate(180deg) saturate(200%); }
+  100% { filter: hue-rotate(360deg) saturate(100%); }
+}
+
+.mushroom-cap {
+  animation: pulse 10s infinite alternate, morphBackground 20s infinite;
+}
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+  }
+  
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  h1 {
+    font-size: 4rem;
+    text-align: center;
+    color: #f0e6ff;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+  }
+  
+  .section {
+    margin-bottom: 4rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+  }
+  
+  .section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+  }
+  
+  h2 {
+    color: #ffd700;
+    font-size: 2rem;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .card {
+    background: rgba(0,0,0,0.3);
+    border-radius: 15px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #ff00ff;
+  }
+  
+  .spore {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ffd700;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float 5s infinite;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-100vh) rotate(360deg); }
+  }
+  
+  #mushroom-quiz {
+    background: #6b5b95;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+  }
+  
+  #quiz-image {
+    max-width: 300px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+  
+  #quiz-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .quiz-option {
+    background: #ff6b6b;
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .quiz-option:hover {
+    background: #ff8e8e;
+    transform: scale(1.05);
+  }
+  
+  #daily-blog {
+    background: linear-gradient(45deg, #ff6b6b, #6b5b95);
+    padding: 2rem;
+    border-radius: 15px;
+    color: #fff;
+  }
+  
+  #blog-content {
+    font-style: italic;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(0,0,0,0.5);
+  }
+  
+  a {
+    color: #ffd700;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  .glow {
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+  }
+  .menu-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(26, 13, 44, 0.9);
+    padding: 10px 0;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+.menu-bar.hidden {
+    transform: translateY(-100%);
+}
+.menu-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.menu-bar li {
+    margin: 5px 10px;
+}
+.menu-bar a {
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-size: 0.9em;
+}
+.menu-bar a:hover {
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff;
+}
+.social-icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+@media (max-width: 768px) {
+    .menu-bar a {
+        font-size: 0.8em;
+    }
+    .social-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+
+</style>
+</head>
+<body>
+<div class="mushroom-cap"></div>
+
+<div class="content">
+  <nav class="menu-bar">
+    <ul>
+      <li><a href="index.html">Home</a></li>
+      <li><a href="scientific research/Scientific articles.html">Scientific Research</a></li>
+      <li><a href="fungal time machine/fungal time machine with chart.html">Fungal Time Machine</a></li>
+      <li><a href="mushroom recipes/magical mushrooms rescipes.html">Recipes</a></li>
+      <li><a href="JTn/JTN MAIN (2).html">JTN Articles</a></li>
+      <li><a href="fungal gloassary/fungal terms.html">Fungal Glossary</a></li>
+      <li><a href="https://justtainowstore.com/">Merch</a></li>
+      <li><a href="fungal funnnies/Fungal Funnies.html">Fungal Funnies</a></li>
+      <li><a href="podcast/sub pages/TRUE LIFE PAGE.html">True Life Storys</a></li>
+      <li><a href="podcast/sub pages/just tai with pics.html">Just Tai Now</a></li>
+      <li><a href="[sychedelic art gallery/art intro.html">Art</a></li>
+      <li><a href="meditattion games/Meditiaon Game Intro.html">Mediations</a></li>
+      <li><a href="contact aboutme/contat page2.html">Contact</a></li>
+      
+      <li>
+        <a href="https://www.tiktok.com/@4umushroom?is_from_webapp=1&sender_device=pc" target="_blank">
+          <img src="https://i.postimg.cc/dVs5jHHR/vecteezy-tiktok-png-icon-16716450.png" alt="Facebook" class="social-icon">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.instagram.com/4umushroom/" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/132px-Instagram_logo_2016.svg.png" alt="Instagram" class="social-icon">
+        </a>
+      </li>
+      <li>
+        <a href="https://x.com/4UMushrooms" target="_blank">
+          <img src="https://twitter.com/favicon.ico" alt="Twitter" class="social-icon">
+        </a>
+      </li>
+
+
+    </ul>
+  </nav>
+
+
+  <h1>4 U Mushroom Just tai Now</h1>
+  <h1> Just tai Now</h1>
+  
+  <section class="section" id="introduction">
+    <h2>Welcome to the Fungal Frontier</h2>
+    <img src="https://mush.room/images/fungal-frontier.jpg" alt="A diverse array of colorful mushrooms in a lush forest setting" width="80%" height="auto" style="border-radius: 10px; margin-bottom: 1rem; display: block; margin-left: auto; margin-right: auto;">
+    <p>Dive into the fascinating world of mushrooms, where science meets mysticism and nature reveals its most extraordinary secrets. Whether you're a curious newcomer or a seasoned psychonaut, Mush Room is your portal to the universe of fungi.</p>
+  </section>
+
+  <section class="section" id="featured-content">
+    <h2>Featured Spores</h2>
+    <div class="grid">
+      <div class="card">
+        <img src="https://i.imgur.com/2OHjSEc.jpg" alt="The Psychedelic Renaissance is making a comeback. What can this mean for our Future?" width="100%" height="200" style="object-fit: cover; border-radius: 10px 10px 0 0;">
+        <h3>Modern Psychdelic revolutionizing</h3>
+        <a href="../msuhry site/JTn/sub art/the psychedelic renaissance.html">See More</a>
+        <p>The Psychedelic Renaissance is making a comeback. What can this mean for our Future?.</p>
+      </div>
+      <div class="card">
+        <img src="https://i.imgur.com/BmV1jxh.jpg" alt="Close-up of Lion's Mane mushroom with its distinctive shaggy appearance" width="100%" height="200" style="object-fit: cover; border-radius: 10px 10px 0 0;">
+        <h3>Just Tai Now Msuhroom Inspried Recipes </h3>
+        <a href="../msuhry site/mushroom recipes/magical mushrooms rescipes.html">See More</a>
+        <p>Discover the vast </p>
+      </div>
+      <div class="card">
+        <img src="https://i.imgur.com/g9T6xNE.png" alt="Abstract representation of a psychedelic experience with swirling colors" width="100%" height="200" style="object-fit: cover; border-radius: 10px 10px 0 0;">
+        <h3>True Life Storys </h3>
+        <a href="../msuhry site/podcast/sub pages/TRUE LIFE PAGE.html">See More</a>
+        <p> Has been recording psychedelic Journeys from around the world for over five years .</p>
+      </div>
+      <div class="card">
+        <img src="https://i.imgur.com/2OHjSEc.jpg" alt="Illustration of underground mycelial networks connecting trees" width="100%" height="200" style="object-fit: cover; border-radius: 10px 10px 0 0;">
+        <h3>Mycelial Networks: Nature's Internet</h3>
+        <a href="../msuhry site/JTn/sub art/just tai past article.html">See More</a>
+        <p>Uncover the fascinating underground communication system of fungi.</p>
+      </div>
+    </div>
+  </section>
+
+  <section class="section" id="psychedelic-experience">
+    <h2>The Psychedelic Experience</h2>
+    <img src="https://mush.room/images/psychedelic-experience.jpg" alt="Artistic representation of a psychedelic mushroom trip with vibrant colors and patterns" width="80%" height="auto" style="border-radius: 10px; margin-bottom: 1rem; display: block; margin-left: auto; margin-right: auto;">
+    <p>Embark on a journey through the history, effects, and personal accounts of psychedelic mushrooms. Remember: always prioritize safety and legality in your explorations.</p>
+    <a href="the pychdelic experince/the psy experience.html">Learn More</a>
+  </section>
+
+  <section class="section" id="mushroom-culture">
+    <h2>Mushroom Culture</h2>
+    <img src="https://i.imgur.com/ZdJj3fU.jpg" alt="Collage of mushroom-related cultural items from various traditions" width="100%" height="auto" style="border-radius: 10px; margin-bottom: 1rem;">
+    <p>From ancient shamanic rituals to modern mycology, discover the rich tapestry of mushroom culture across the globe.</p>
+    <a href="fungal time machine/fungal time machine with chart.html">Explore Traditions</a>
+  </section>
+
+  <section class="section" id="daily-blog">
+    <h2>This Week's Mush Musing</h2>
+    <img src="https://mush.room/images/oyster-mushrooms.jpg" alt="A cluster of oyster mushrooms growing on a fallen log at dawn" width="100%" height="auto" style="border-radius: 10px; margin-bottom: 1rem;">
+    <div id="blog-content">
+      <p>"Just Tai Now Just Think About it Combine oyur mind with your heart see what your gut mind is saying and let whatever come out, come on out!"</p>
+      <p>-Sauntai, Founder of Mush Room</p>
+    </div>
+  </section>
+
+  <section class="section" id="research">
+    <h2>Scientific Research &amp; Articles</h2>
+    <img src="https://i.imgur.com/xGTNEgN.jpg" alt="Scientists studying mushrooms in a laboratory setting" width="100%" height="auto" style="border-radius: 10px; margin-bottom: 1rem;">
+    <p>Stay up-to-date with the latest scientific discoveries in the world of mycology and psychedelic research.</p>
+    <a href="scientific research/Scientific articles.html">Explore Studies</a>
+  </section>
+
+  <section class="section" id="ancient-history">
+    <h2>Fungal Time Machine</h2>
+    <img src="https://i.imgur.com/Gl2WGKV.jpg" alt="Ancient cave painting depicting mushroom use in rituals" width="100%" height="auto" style="border-radius: 10px; margin-bottom: 1rem;">
+    <p>Journey back in time to explore the role of mushrooms in ancient civilizations, from the Eleusinian Mysteries of Ancient Greece to the sacred mushroom stones of Mesoamerica.</p>
+    <a href="fungal time machine/fungal time machine with chart.html">Travel Through Time</a>
+  </section>
+
+  <section class="section" id="resources">
+    <h2>Mycelial Network</h2>
+    <img src="https://i.imgur.com/49sK49d.jpg" alt="Abstract visualization of interconnected mushroom resources" width="100%" height="auto" style="border-radius: 10px; margin-bottom: 1rem;">
+    <p>Connect with our curated collection of mushroom-related resources:</p>
+    <ul>
+      <li><a href="fungal gloassary/fungal terms.html">Fungal Glossary</a></li>
+      <li><a href="fact articles/quick faqs.html">Frequently Asked Questions</a></li>
+      <li><a href="mushroom recipes/rescipes intro.html">Mushroom Recipes</a></li>
+      <li><a href="https://mush.room/art-gallery">Psychedelic Art Gallery</a></li>
+      <li><a href="https://mush.room/podcast">Spore Cast: Our Weekly Podcast</a></li>
+      <li><a href="https://mush.room/identify">Mushroom Identification Guide</a></li>
+      <li><a href="fungal funnnies/Fungal Funnies.html">Fungal Funnies</a></li>
+      <li><a href="https://justtainowstore.com/">Mush Merch: Our Online Store</a></li>
+    </ul>
+  </section>
+
+  <section class="section" id="contact">
+    <h2>Grow With Us</h2>
+    <img src="https://mush.room/images/contact-us.jpg" alt="Diverse group of mushroom enthusiasts collaborating" width="100%" height="auto" style="border-radius: 10px; margin-bottom: 1rem;">
+    <p>Have questions, comments, or experiences to share? We'd love to hear from you!</p>
+    <a href="contact aboutme/contact page.html">Reach Out</a>
+  </section>
+</div>
+
+
+<script>
+  function createSpore() {
+    const spore = document.createElement('div');
+    spore.classList.add('spore');
+    spore.style.left = Math.random() * window.innerWidth + 'px';
+    document.body.appendChild(spore);
+    
+    setTimeout(() => {
+      spore.remove();
+    }, 5000);
+  }
+
+  setInterval(createSpore, 500);
+  
+  const quizOptions = document.querySelectorAll('.quiz-option');
+  quizOptions.forEach(option => {
+    option.addEventListener('click', () => {
+      alert('Great guess! The correct answer is Amanita muscaria. Keep exploring to learn more about different mushroom species!');
+    });
+  });
+  const canvas = document.createElement('canvas');
+  document.body.appendChild(canvas);
+  canvas.style.position = 'fixed';
+  canvas.style.top = '0';
+  canvas.style.left = '0';
+  canvas.style.width = '100%';
+  canvas.style.height = '100%';
+  canvas.style.pointerEvents = 'none';
+  canvas.style.zIndex = '1000';
+
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const particles = [];
+
+  class Particle {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.size = Math.random() * 5 + 1;
+      this.speedX = Math.random() * 3 - 1.5;
+      this.speedY = Math.random() * 3 - 1.5;
+      this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.size > 0.2) this.size -= 0.1;
+    }
+    draw() {
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function handleParticles() {
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+      if (particles[i].size <= 0.2) {
+        particles.splice(i, 1);
+        i--;
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    handleParticles();
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('mousemove', function(event) {
+    for (let i = 0; i < 5; i++) {
+      particles.push(new Particle(event.x, event.y));
+    }
+  });
+
+  animate();
+</script>
+<Script>
+  // New code for hiding menu bar on scroll
+  let lastScrollTop = 0;
+  const menuBar = document.getElementById('menuBar');
+  
+  window.addEventListener('scroll', () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) {
+      menuBar.classList.add('hidden');
+    } else {
+      menuBar.classList.remove('hidden');
+    }
+    lastScrollTop = scrollTop;
+  });
+  
+  </Script>
+  
+  
+</body>
+<footer>
+  <p>© 2023 Mush Room | <a href="terms of service.html">Terms</a> | <a href="privacy policy2.html">Privacy</a></p>
+</footer>
+
+</html>
