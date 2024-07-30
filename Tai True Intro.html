@@ -1,0 +1,383 @@
+<html>
+<head>
+<title>Mush Room - Explore the Fungal Frontier</title>
+<style>
+  body {
+    margin: 0;
+    padding: 0;
+    font-family: 'Gill Sans', 'Gill Sans MT', Calibri, 'Trebuchet MS', sans-serif;
+    background: #1a0d2c;
+    color: #f0e6ff;
+    overflow-x: hidden;
+  }
+  
+  .mushroom-cap {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: radial-gradient(circle at center, #ff6b6b, #6b5b95);
+    clip-path: ellipse(75% 60% at 50% 40%);
+    z-index: -1;
+    animation: pulse 10s infinite alternate;
+  }
+  
+  @keyframes pulse {
+    0% { transform: scale(1); }
+    100% { transform: scale(1.05); }
+  }
+  
+  .content {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+  }
+  
+  h1 {
+    font-size: 4rem;
+    text-align: center;
+    color: #f0e6ff;
+    text-shadow: 0 0 10px #ff00ff, 0 0 20px #ff00ff, 0 0 30px #ff00ff;
+  }
+  
+  .section {
+    margin-bottom: 4rem;
+    background: rgba(255,255,255,0.1);
+    border-radius: 20px;
+    padding: 2rem;
+    backdrop-filter: blur(5px);
+    transition: all 0.3s ease;
+  }
+  
+  .section:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 5px 15px rgba(255,255,255,0.2);
+  }
+  
+  h2 {
+    color: #ffd700;
+    font-size: 2rem;
+  }
+  
+  .grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+    gap: 2rem;
+  }
+  
+  .card {
+    background: rgba(0,0,0,0.3);
+    border-radius: 15px;
+    padding: 1rem;
+    transition: all 0.3s ease;
+  }
+  
+  .card:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 20px #ff00ff;
+  }
+  
+  .spore {
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ffd700;
+    border-radius: 50%;
+    pointer-events: none;
+    animation: float 5s infinite;
+  }
+  
+  @keyframes float {
+    0% { transform: translateY(0) rotate(0deg); }
+    100% { transform: translateY(-100vh) rotate(360deg); }
+  }
+  
+  #mushroom-quiz {
+    background: #6b5b95;
+    padding: 2rem;
+    border-radius: 15px;
+    text-align: center;
+  }
+  
+  #quiz-image {
+    max-width: 300px;
+    border-radius: 10px;
+    margin-bottom: 1rem;
+  }
+  
+  #quiz-options {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
+  }
+  
+  .quiz-option {
+    background: #ff6b6b;
+    color: #fff;
+    border: none;
+    padding: 1rem;
+    border-radius: 5px;
+    cursor: pointer;
+    transition: all 0.3s ease;
+  }
+  
+  .quiz-option:hover {
+    background: #ff8e8e;
+    transform: scale(1.05);
+  }
+  
+  #daily-blog {
+    background: linear-gradient(45deg, #ff6b6b, #6b5b95);
+    padding: 2rem;
+    border-radius: 15px;
+    color: #fff;
+  }
+  
+  #blog-content {
+    font-style: italic;
+  }
+  
+  footer {
+    text-align: center;
+    padding: 2rem;
+    background: rgba(0,0,0,0.5);
+  }
+  
+  a {
+    color: #ffd700;
+    text-decoration: none;
+  }
+  
+  a:hover {
+    text-decoration: underline;
+  }
+  .menu-bar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    background: rgba(26, 13, 44, 0.9);
+    padding: 10px 0;
+    z-index: 1000;
+    transition: transform 0.3s ease-in-out;
+}
+.menu-bar.hidden {
+    transform: translateY(-100%);
+}
+.menu-bar ul {
+    list-style-type: none;
+    margin: 0;
+    padding: 0;
+    text-align: center;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    align-items: center;
+}
+.menu-bar li {
+    margin: 5px 10px;
+}
+.menu-bar a {
+    color: #ffd700;
+    text-decoration: none;
+    font-weight: bold;
+    transition: all 0.3s ease;
+    font-size: 0.9em;
+}
+.menu-bar a:hover {
+    color: #ff00ff;
+    text-shadow: 0 0 5px #ff00ff;
+}
+.social-icon {
+    width: 24px;
+    height: 24px;
+    margin-left: 10px;
+    vertical-align: middle;
+}
+@media (max-width: 768px) {
+    .menu-bar a {
+        font-size: 0.8em;
+    }
+    .social-icon {
+        width: 20px;
+        height: 20px;
+    }
+}
+
+</style>
+</head>
+<body>
+  <nav class="menu-bar" id="menuBar">
+    <ul>
+      <li><a href="../index.html">Home</a></li>
+      <li><a href="../scientific research/Scientific articles.html">Scientific Research</a></li>
+      <li><a href="../fungal time machine/fungal time machine with chart.html">Fungal Time Machine</a></li>
+      <li><a href="../mushroom recipes/magical mushrooms rescipes.html">Recipes</a></li>
+      <li><a href="../JTn/JTN MAIN (2).html">JTN Articles</a></li>
+      <li><a href="../fungal gloassary/fungal terms.html">Fungal Glossary</a></li>
+      <li><a href="https://justtainowstore.com/">Merch</a></li>
+      <li><a href="../fungal funnnies/Fungal Funnies.html">Fungal Funnies</a></li>
+      <li><a href="../podcast/sub pages/TRUE LIFE PAGE.html">True Life Storys</a></li>
+      <li><a href="../podcast/sub pages/just tai with pics.html">Just Tai Now</a></li>
+      <li><a href="../[sychedelic art gallery/art intro.html">Art</a></li>
+      <li><a href="../meditattion games/Meditiaon Game Intro.html">Mediations</a></li>
+      <li><a href="../contact aboutme/contat page2.html">Contact</a></li>
+      <li>
+        <a href="https://www.tiktok.com/@4umushroom?is_from_webapp=1&sender_device=pc" target="_blank">
+          <img src="https://i.postimg.cc/dVs5jHHR/vecteezy-tiktok-png-icon-16716450.png" alt="Facebook" class="social-icon">
+        </a>
+      </li>
+      <li>
+        <a href="https://www.instagram.com/4umushroom/" target="_blank">
+          <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/e/e7/Instagram_logo_2016.svg/132px-Instagram_logo_2016.svg.png
+" alt="Instagram" class="social-icon">
+        </a>
+      </li>
+      <li>
+        <a href="https://x.com/4UMushrooms" target="_blank">
+          <img src="https://twitter.com/favicon.ico" alt="Twitter" class="social-icon">
+        </a>
+      </li>
+    </ul>
+</nav>
+
+  <div class="mushroom-cap"></div>
+
+  <h1 style="font-size: 3rem; margin-top: 3rem;">4 U Mushroom</h1>
+  
+  <!-- Modified sections with smaller boxes -->
+  <section class="section" id="just-think-about-it" style="padding: 1.5rem; margin-bottom: 2rem;">
+    <h2 style="font-size: 1.5rem;">Just Think About It</h2>
+    <img src="https://mush.room/images/think-about-it.jpg" alt="Abstract image of a human head with mushrooms growing from it, representing thought and consciousness" width="100%" height="auto" style="border-radius: 8px; margin-bottom: 0.75rem; display: block; margin-left: auto; margin-right: auto;">
+    <p style="font-size: 0.9rem;">Welcome to our mind-bending corner of contemplation. Here, we explore thought-provoking ideas and philosophical musings inspired by the fungal kingdom.</p>
+    <div class="thought-bubble" style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 0.75rem;">
+      <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Mushroom for Thought:</h3>
+      <p style="font-size: 0.9rem;">"If a mushroom could think, would it ponder its own mortality, or would it simply focus on spreading its spores? And how different is that from human existence?"</p>
+    </div>
+    <a href="https://mush.room/think-about-it" style="display: inline-block; margin-top: 0.75rem; font-size: 0.9rem;">Dive Deeper</a>
+  </section>
+
+  <section class="section" id="true-life-stories" style="padding: 1.5rem; margin-bottom: 2rem;">
+    <h2 style="font-size: 1.5rem;">True Life Stories</h2>
+    <img src="https://mush.room/images/true-stories.jpg" alt="Collage of diverse people sharing their experiences with mushrooms" width="100%" height="auto" style="border-radius: 8px; margin-bottom: 0.75rem; display: block; margin-left: auto; margin-right: auto;">
+    <p style="font-size: 0.9rem;">Real people, real experiences. Discover how encounters with mushrooms have changed lives, sparked creativity, and opened new perspectives.</p>
+    <div class="story-preview" style="background: rgba(255,255,255,0.1); padding: 1rem; border-radius: 8px; margin-top: 0.75rem;">
+      <h3 style="font-size: 1.2rem; margin-bottom: 0.5rem;">Featured Story: "The Hike That Changed Everything"</h3>
+      <p style="font-size: 0.9rem;">"I was lost in the woods when I stumbled upon a patch of golden teacher mushrooms. Little did I know, this chance encounter would lead me to find my true calling as a mycologist..."</p>
+    </div>
+    <a href="https://mush.room/true-stories" style="display: inline-block; margin-top: 0.75rem; font-size: 0.9rem;">Read More Stories</a>
+  </section>
+</div>
+
+
+<script>
+  function createSpore() {
+    const spore = document.createElement('div');
+    spore.classList.add('spore');
+    spore.style.left = Math.random() * window.innerWidth + 'px';
+    document.body.appendChild(spore);
+    
+    setTimeout(() => {
+      spore.remove();
+    }, 5000);
+  }
+
+  setInterval(createSpore, 500);
+  
+  const quizOptions = document.querySelectorAll('.quiz-option');
+  quizOptions.forEach(option => {
+    option.addEventListener('click', () => {
+      alert('Great guess! The correct answer is Amanita muscaria. Keep exploring to learn more about different mushroom species!');
+    });
+  });
+</script>
+<script>
+  const canvas = document.createElement('canvas');
+  document.body.appendChild(canvas);
+  canvas.style.position = 'fixed';
+  canvas.style.top = '0';
+  canvas.style.left = '0';
+  canvas.style.width = '100%';
+  canvas.style.height = '100%';
+  canvas.style.pointerEvents = 'none';
+  canvas.style.zIndex = '1000';
+
+  const ctx = canvas.getContext('2d');
+  canvas.width = window.innerWidth;
+  canvas.height = window.innerHeight;
+
+  const particles = [];
+
+  class Particle {
+    constructor(x, y) {
+      this.x = x;
+      this.y = y;
+      this.size = Math.random() * 5 + 1;
+      this.speedX = Math.random() * 3 - 1.5;
+      this.speedY = Math.random() * 3 - 1.5;
+      this.color = `hsl(${Math.random() * 360}, 100%, 50%)`;
+    }
+    update() {
+      this.x += this.speedX;
+      this.y += this.speedY;
+      if (this.size > 0.2) this.size -= 0.1;
+    }
+    draw() {
+      ctx.fillStyle = this.color;
+      ctx.beginPath();
+      ctx.arc(this.x, this.y, this.size, 0, Math.PI * 2);
+      ctx.fill();
+    }
+  }
+
+  function handleParticles() {
+    for (let i = 0; i < particles.length; i++) {
+      particles[i].update();
+      particles[i].draw();
+      if (particles[i].size <= 0.2) {
+        particles.splice(i, 1);
+        i--;
+      }
+    }
+  }
+
+  function animate() {
+    ctx.clearRect(0, 0, canvas.width, canvas.height);
+    handleParticles();
+    requestAnimationFrame(animate);
+  }
+
+  window.addEventListener('mousemove', function(event) {
+    for (let i = 0; i < 5; i++) {
+      particles.push(new Particle(event.x, event.y));
+    }
+  });
+
+  animate();
+</script>
+<Script>
+  // New code for hiding menu bar on scroll
+  let lastScrollTop = 0;
+  const menuBar = document.getElementById('menuBar');
+  
+  window.addEventListener('scroll', () => {
+    let scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    if (scrollTop > lastScrollTop) {
+      menuBar.classList.add('hidden');
+    } else {
+      menuBar.classList.remove('hidden');
+    }
+    lastScrollTop = scrollTop;
+  });
+  
+  </Script>
+  
+  
+</body>
+<footer>
+<footer>
+  <p>© 2024 Justtainow | <a href="../terms of service.html">Terms</a> | <a href="../privacy policy2.html">Privacy</a></p>
+</footer>
+</footer>
+</html>
